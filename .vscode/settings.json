@@ -1,0 +1,7 @@
+{
+    "C_Cpp.default.configurationProvider": "mesonbuild.mesonbuild",
+    "mesonbuild.configureOnOpen": true,
+    "cmake.configureOnOpen": false,
+    "files.trimTrailingWhitespace": true,
+    "makefile.configureOnOpen": false
+}

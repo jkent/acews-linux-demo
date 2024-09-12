@@ -1,0 +1,3 @@
+[submodule "subprojects/acews"]
+	path = subprojects/acews
+	url = https://github.com/jkent/acews.git
