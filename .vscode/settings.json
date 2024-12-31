@@ -3,5 +3,9 @@
     "mesonbuild.configureOnOpen": true,
     "cmake.configureOnOpen": false,
     "files.trimTrailingWhitespace": true,
-    "makefile.configureOnOpen": false
+    "makefile.configureOnOpen": false,
+    "C_Cpp.default.compileCommands": "/home/jkent/esp/acews-linux-demo/builddir/compile_commands.json",
+    "files.associations": {
+        "socket.h": "c"
+    }
 }
