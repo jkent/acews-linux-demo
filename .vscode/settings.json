@@ -4,5 +4,6 @@
     "cmake.configureOnOpen": false,
     "files.trimTrailingWhitespace": true,
     "makefile.configureOnOpen": false,
-    "C_Cpp.autoAddFileAssociations": false
+    "C_Cpp.autoAddFileAssociations": false,
+    "C_Cpp.default.compileCommands": "${workspaceFolder}/builddir/compile_commands.json"
 }

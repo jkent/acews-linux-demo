@@ -17,7 +17,11 @@ browse: meson
 	@ninja -C builddir browse
 
 meson:
-	@if [ ! -d builddir ]; then mkdir -p builddir; meson setup . builddir; fi
+	@if [ ! -d builddir ]; then \
+	  mkdir -p builddir && \
+	  meson setup . builddir && \
+	  meson configure builddir -D acews:log-level=verbose; \
+	fi
 
 nuke:
 	@rm -rf builddir
