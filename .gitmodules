@@ -1,3 +1,12 @@
 [submodule "subprojects/acews"]
 	path = subprojects/acews
 	url = https://github.com/jkent/acews.git
+[submodule "subprojects/sjp"]
+	path = subprojects/sjp
+	url = git@github.com:jkent/sjp
+[submodule "subprojects/frozen"]
+	path = subprojects/frozen
+	url = https://github.com/jkent/frozen-submodule
+[submodule "subprojects/acews-demo"]
+	path = subprojects/acews-demo
+	url = https://github.com/jkent/acews-demo

@@ -10,6 +10,9 @@ debug: meson
 docs: meson
 	@ninja -C builddir docs
 
+docs-clean: meson
+	@rm -r builddir/subprojects/acews/docs
+
 browse: meson
 	@ninja -C builddir browse
 
@@ -22,4 +25,4 @@ nuke:
 run: meson
 	@ninja -C builddir run
 
-.PHONY: build clean debug docs meson nuke run
+.PHONY: build clean debug docs docs-clean meson nuke run

@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: MIT
-project('acews-demo',
+project('acews-linux-demo',
     ['c'],
     meson_version: '>=0.60.0',
     version: files('version.txt'),
@@ -46,9 +46,10 @@ subdir('src')
 
 depends += [
     dependency('acews'),
+    dependency('acews-demo'),
 ]
 
-acews_demo = executable('acews-demo',
+demo = executable('linux-demo',
     sources,
     dependencies: depends,
 )
@@ -66,11 +67,11 @@ run_target('browse',
 )
 
 run_target('run',
-    depends: acews_demo,
-    command: [acews_demo],
+    depends: demo,
+    command: [demo],
 )
 
 run_target('debug',
-    depends: acews_demo,
-    command: ['gdb', '-ex', 'r', acews_demo],
+    depends: demo,
+    command: ['gdb', '-ex', 'r', demo],
 )

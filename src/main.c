@@ -6,6 +6,7 @@
 #include <string.h>
 #include <sys/termios.h>
 
+#include "demo.h"
 #include "ews_config.h"
 #include "ews.h"
 
@@ -17,7 +18,7 @@ extern const uint32_t server_public_der_len;
 
 static ews_t *ews;
 static struct termios termios;
-static void ws_loop(ews_ws_t *ws);
+
 
 static void sigint(int signum)
 {
@@ -46,9 +47,16 @@ int main(int argc, char *argv[])
     };
 
     ews = ews_init(&config);
-    ews_routes_append(ews, "/test", ews_routes_test_handler, 0);
-    ews_routes_append(ews, "/*", ews_ws_route_handler, 1, ws_loop);
-    ews_routes_append(ews, "/*", ews_routes_stdio_get_handler, 1, "../html");
+
+    ews_routes_append(ews, "/demo/ws_echo", ews_ws_route_handler, 1, ws_echo_loop);
+    ews_routes_append(ews, "/demo/ws_chat", ews_ws_route_handler, 1, ws_chat_loop);
+    ews_routes_append(ews, "/demo/test", demo_test_handler, 0);
+    ews_routes_append(ews, "/demo/*", ews_routes_stdio_get_handler, 2, 5, "../subprojects/acews-demo/html");
+
+    ews_routes_append(ews, "/docs/*", ews_routes_stdio_get_handler, 2, 5, "subprojects/acews/docs/html");
+
+    ews_routes_append(ews, "/*", ews_routes_stdio_get_handler, 2, 0, "../html");
+    ews_routes_append(ews, "/*", ews_routes_directory_rediret_handler, 0);
 
     struct sigaction action = { 0 };
     memset(&action, 0, sizeof(action));
@@ -63,19 +71,4 @@ int main(int argc, char *argv[])
     sigint(0);
 
     exit(EXIT_SUCCESS);
-}
-
-static void ws_loop(ews_ws_t *ws)
-{
-    char buf[1024];
-    int len;
-    int flags;
-
-    while (true) {
-        len = ws->ops->recv(ws, &flags, buf, sizeof(buf));
-        if (len < 0) {
-            break;
-        }
-        ws->ops->send(ws, 0, buf, len);
-    }
 }
